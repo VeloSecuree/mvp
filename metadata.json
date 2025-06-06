@@ -1,0 +1,6 @@
+{
+  "name": "Velosecure MVP",
+  "description": "An MVP for Velosecure, a bike insurance and tracking application. This app allows users to log in, view their bike's current status, and see a list of their rides.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
