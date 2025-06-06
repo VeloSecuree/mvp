@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { MOCK_BIKE, MOCK_RIDES } from '../constants';
-import { BikeStatusCard } from '../components/BikeStatusCard';
-import { RideListItem } from '../components/RideListItem';
+import { MOCK_BIKE, MOCK_RIDES } from '../src/constants'; // Updated path
+import { BikeStatusCard } from '../src/components/BikeStatusCard'; // Updated path
+import { RideListItem } from '../src/components/RideListItem'; // Updated path
 import { Card } from '../components/ui/Card';
 import { Header } from '../components/Header';
 import { RouteIcon } from '../components/icons/RouteIcon';
@@ -37,4 +37,3 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onLogout }) => {
     </div>
   );
 };
-    

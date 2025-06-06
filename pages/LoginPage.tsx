@@ -4,11 +4,14 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card } from '../components/ui/Card';
 import { BikeIcon } from '../components/icons/BikeIcon';
-import { APP_TITLE } from '../constants';
+import { APP_TITLE } from '../src/constants'; // Updated path
+import { AuthService } from '../src/services/AuthService'; // Updated path
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
 }
+
+const authService = new AuthService(); 
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
@@ -21,15 +24,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
     setError('');
     setIsLoading(true);
 
-    // Mock authentication
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const result = await authService.login(email, password);
 
-    if (email && password) { // Basic validation
-      // In a real app, you'd call an auth service here
-      console.log('Login attempt with:', { email, password });
+    if (result.success) {
+      // In a real app, result.user might be stored in a global state/context
+      console.log('Login successful for user:', result.user?.email);
       onLoginSuccess();
     } else {
-      setError('Please enter both email and password.');
+      setError(result.error || 'Login failed. Please try again.');
     }
     setIsLoading(false);
   };
@@ -52,6 +54,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             placeholder="you@example.com"
             disabled={isLoading}
             required
+            aria-required="true"
+            aria-describedby={error ? "login-error" : undefined}
           />
           <Input
             id="password"
@@ -62,8 +66,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             placeholder="••••••••"
             disabled={isLoading}
             required
+            aria-required="true"
+            aria-describedby={error ? "login-error" : undefined}
           />
-          {error && <p className="text-sm text-red-600 mb-4 text-center">{error}</p>}
+          {error && <p id="login-error" role="alert" className="text-sm text-red-600 mb-4 text-center">{error}</p>}
           <Button type="submit" fullWidth disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Login'}
           </Button>
@@ -72,4 +78,3 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
     </div>
   );
 };
-    

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './App'; // This path should be correct if App.tsx is in the same directory as index.tsx (root for src files)
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,4 +14,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-    

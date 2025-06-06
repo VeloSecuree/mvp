@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
-import { AuthStatus } from './types';
+import { AuthStatus } from './src/types'; // Updated path
 
 const App: React.FC = () => {
   // Initialize authStatus from localStorage or default to UNAUTHENTICATED
@@ -76,4 +76,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-    

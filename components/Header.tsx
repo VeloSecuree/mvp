@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from './ui/Button';
 import { LogoutIcon } from './icons/LogoutIcon';
 import { BikeIcon } from './icons/BikeIcon';
-import { APP_TITLE } from '../constants';
+import { APP_TITLE } from '../src/constants'; // Updated path
 
 interface HeaderProps {
   onLogout: () => void;
@@ -26,4 +26,3 @@ export const Header: React.FC<HeaderProps> = ({ onLogout }) => {
     </header>
   );
 };
-    
